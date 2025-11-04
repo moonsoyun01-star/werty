@@ -1,370 +1,176 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>그린넥스트 (GreenNext) — 청소년이 만드는 푸른 변화</title>
-  <meta name="description" content="그린넥스트는 고등학생이 만들어가는 비영리 환경 재단입니다. 학교 탄소 감축 챌린지의 '탄소 다이어리' 활동으로 실천을 이어가요." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #f6fbff;
-      --card: #ffffff;
-      --muted: #6b7280;
-      --accent-green: #2aa876; /* primary green */
-      --accent-blue: #2b89d9;  /* primary blue */
-      --gradient: linear-gradient(135deg,var(--accent-blue),var(--accent-green));
-      --max-width: 1100px;
-      --radius: 12px;
-      --glass: rgba(255,255,255,0.7);
-    }
-    /* Reset */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Inter", "Nanum Gothic", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #f6fbff 0%, #f0f8fb 100%);
-      color:#0f172a;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      scroll-behavior:smooth;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenNext - 청소년이 만드는 푸른 변화</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Pretendard', sans-serif;
+        color: #1f1f1f;
+        background: #f5f8f3;
+        scroll-behavior: smooth;
     }
 
-    /* Navbar */
-    .nav{
-      position:fixed;
-      top:0; left:0; right:0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:12px 20px;
-      z-index:60;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
-      box-shadow: 0 6px 18px rgba(9,30,66,0.06);
-    }
-    .brand{
-      display:flex; gap:12px; align-items:center;
-    }
-    .logo{
-      width:48px; height:48px; display:grid; place-items:center;
-      border-radius:10px;
-      background:var(--gradient);
-      color:white; font-weight:700;
-      box-shadow: 0 6px 16px rgba(43,137,217,0.18);
-      flex:0 0 48px;
-    }
-    .brand .title{
-      line-height:1;
-    }
-    .brand h1{font-size:16px;margin:0}
-    .brand p{margin:0;font-size:12px;color:var(--muted)}
-
-    nav ul{display:flex; gap:12px; list-style:none; margin:0; padding:0; align-items:center;}
-    nav a{
-      text-decoration:none; color:var(--muted); font-weight:600; font-size:14px;
-      padding:8px 10px; border-radius:8px;
-    }
-    nav a:hover{color:var(--accent-blue); background:rgba(43,137,217,0.06)}
-
-    /* Sections full height */
-    section{
-      min-height:100vh;
-      padding:88px 20px 60px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .container{width:100%; max-width:var(--max-width); margin:0 auto; }
-
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:28px;
-      align-items:center;
-    }
-    .hero .hero-left{
-      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.5));
-      padding:28px;
-      border-radius:16px;
-      box-shadow: 0 10px 30px rgba(11,56,90,0.06);
-    }
-    .eyebrow{font-weight:700; color:var(--accent-green); font-size:13px; letter-spacing:0.6px; text-transform:uppercase}
-    h2{margin:8px 0 10px; font-size:28px}
-    .lead{color:#0f172a; font-size:16px; margin-bottom:16px}
-    .hero-cta{display:flex; gap:12px; flex-wrap:wrap}
-
-    .btn{
-      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer; border:0;
-      text-decoration:none;
-    }
-    .btn-primary{
-      background:var(--gradient); color:white; box-shadow: 0 8px 20px rgba(43,137,217,0.14);
-    }
-    .btn-ghost{background:transparent; color:var(--accent-blue); border:1px solid rgba(43,137,217,0.08)}
-
-    /* Right column - visual */
-    .hero-right{
-      display:grid; place-items:center;
-    }
-    .card-visual{
-      width:100%; max-width:520px; height:320px; border-radius:16px;
-      background: linear-gradient(135deg, rgba(43,137,217,0.08), rgba(42,168,118,0.06));
-      display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-      border:1px solid rgba(11,56,90,0.04);
-    }
-    .leaf{
-      position:absolute; width:220px; height:220px; right:-20px; top:-40px; opacity:0.75; transform:rotate(-20deg);
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><g fill="%232aa876"><path d="M110 0C85 24 68 53 68 86c0 41 42 86 42 86s42-45 42-86C152 53 135 24 110 0z"/></g></svg>') no-repeat center/contain;
+    header {
+        background: #0B7A44;
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    /* Content sections style */
-    .section-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:20px;}
-    .section-head h3{margin:0; font-size:20px}
-    .section-sub{color:var(--muted); font-size:14px}
-
-    .card{
-      background:var(--card); padding:18px; border-radius:14px; box-shadow:0 8px 24px rgba(11,56,90,0.04);
+    .logo {
+        font-size: 48px;
+        font-weight: 900;
     }
 
-    /* 핵심활동 - diary mockup */
-    .diary-grid{display:grid; grid-template-columns: 1fr 360px; gap:20px;}
-    .diary-list{display:flex; flex-direction:column; gap:12px; max-height:420px; overflow:auto; padding-right:6px}
-    .diary-item{padding:12px; border-radius:10px; border:1px solid rgba(11,56,90,0.04); background:linear-gradient(180deg,#fff,#fbfeff)}
-    .diary-meta{font-size:12px; color:var(--muted); margin-bottom:8px}
-    .small{font-size:13px; color:var(--muted)}
-
-    /* campaign form */
-    form .row{display:flex; gap:8px}
-    input[type="text"], input[type="email"], textarea, select{
-      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(11,56,90,0.06); font-size:14px;
-      background:transparent; resize:vertical;
-    }
-    .points-badge{display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; background:linear-gradient(90deg,#e6fff3,#ecf8ff); color:var(--accent-green)}
-
-    /* news cards */
-    .news-grid{display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(240px,1fr))}
-    .news-card img{width:100%; height:140px; object-fit:cover; border-radius:10px; display:block; margin-bottom:10px}
-
-    /* donate/contact */
-    .support-grid{display:grid; grid-template-columns: 1fr 360px; gap:20px}
-    .donate-cta{padding:18px; border-radius:12px; text-align:center; background:linear-gradient(120deg, rgba(42,168,118,0.06), rgba(43,137,217,0.05)); border:1px solid rgba(11,56,90,0.03)}
-
-    /* footer */
-    footer{padding:28px 20px; text-align:center; color:var(--muted); font-size:13px; border-top:1px dashed rgba(11,56,90,0.04);}
-
-    /* responsive */
-    @media (max-width:940px){
-      .nav{padding:10px 12px}
-      .diary-grid, .support-grid{grid-template-columns: 1fr}
-      .hero{grid-template-columns:1fr}
-      .hero-right{order: -1}
+    .slogan {
+        font-size: 20px;
+        margin-top: 10px;
+        opacity: 0.9;
     }
 
-    /* subtle animations */
-    .fade-in{opacity:0; transform:translateY(8px); transition:all .6s cubic-bezier(.2,.9,.3,1)}
-    .fade-in.visible{opacity:1; transform:none}
-    .small-muted{font-size:13px; color:var(--muted)}
-    .pill{padding:6px 10px;border-radius:999px;font-weight:700;background:rgba(43,137,217,0.08)}
-  </style>
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.9);
+        padding: 10px 0;
+        backdrop-filter: blur(6px);
+        text-align: center;
+        z-index: 10;
+        border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #0B7A44;
+        font-weight: bold;
+    }
+
+    section {
+        padding: 100px 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h2 {
+        color: #0B7A44;
+        font-size: 32px;
+        border-left: 6px solid #0B7A44;
+        padding-left: 10px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        line-height: 1.6;
+    }
+
+    .btn {
+        display: inline-block;
+        color: white;
+        background: #0B7A44;
+        padding: 12px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-top: 20px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #095E34;
+    }
+
+    footer {
+        background: #0B7A44;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+</style>
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav" role="banner">
-    <div class="brand" aria-label="그린넥스트 로고">
-      <!-- inline logo: minimal flat blue->green rounded square with leaf E mark -->
-      <div class="logo" aria-hidden="true">
-        <!-- simple SVG logo mark -->
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <rect width="24" height="24" rx="5" fill="url(#g)"/>
-          <path d="M7 13c1.6-3 5.2-4.2 7.6-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#2b89d9"/><stop offset="1" stop-color="#2aa876"/></linearGradient></defs>
-        </svg>
-      </div>
-      <div class="title">
-        <h1>그린넥스트</h1>
-        <p>청소년이 만드는 푸른 변화</p>
-      </div>
+
+<nav>
+    <a href="#about">소개</a>
+    <a href="#activity">핵심활동</a>
+    <a href="#campaign">캠페인 참여</a>
+    <a href="#news">뉴스/스토리</a>
+    <a href="#contact">후원/문의</a>
+</nav>
+
+<header>
+    <div class="logo">GreenNext</div>
+    <div class="slogan">청소년이 만드는 푸른 변화</div>
+</header>
+
+<section id="about">
+    <h2>재단 소개</h2>
+    <div class="card">
+        <p><strong>그린넥스트(GreenNext)</strong>는 고등학생이 주도하는 환경 비영리 재단입니다.</p>
+        <p>우리는 청소년이 스스로 기후 위기 해결의 주체가 될 수 있도록 행동합니다.</p>
     </div>
+</section>
 
-    <nav role="navigation" aria-label="주요 섹션">
-      <ul>
-        <li><a href="#about">소개</a></li>
-        <li><a href="#activity">핵심활동</a></li>
-        <li><a href="#join">캠페인참여</a></li>
-        <li><a href="#news">뉴스·스토리</a></li>
-        <li><a href="#support">후원·문의</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- HERO / INTRO -->
-  <main>
-  <section id="about" aria-labelledby="about-h" role="region">
-    <div class="container hero">
-      <div class="hero-left card fade-in" tabindex="0">
-        <div class="eyebrow">그린넥스트</div>
-        <h2 id="about-h">청소년이 시작하는 학교 탄소 감축 챌린지</h2>
-        <p class="lead">
-          우리는 학교에서 나오는 작은 선택들이 모여 큰 변화를 만든다고 믿습니다. <strong>탄소 다이어리</strong>로 일상의 습관을 기록하고,
-          에코포인트를 쌓아 실천을 보상받으세요 — 친구들과 함께 학교 단위의 감축 랭킹에도 도전할 수 있어요.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#join" role="button">지금 참여하기</a>
-          <a class="btn btn-ghost" href="#activity">핵심활동 보기</a>
-        </div>
-
-        <p style="margin-top:14px" class="small-muted">
-          주최: <strong>그린넥스트 (GreenNext)</strong> · 슬로건: <em>청소년이 만드는 푸른 변화</em>
-        </p>
-      </div>
-
-      <div class="hero-right fade-in" aria-hidden="true">
-        <div class="card-visual card">
-          <div class="leaf" aria-hidden="true"></div>
-          <div style="text-align:center; padding:14px;">
-            <svg width="160" height="160" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="lg" x1="0" x2="1">
-                  <stop offset="0" stop-color="#2b89d9"/>
-                  <stop offset="1" stop-color="#2aa876"/>
-                </linearGradient>
-              </defs>
-              <circle cx="100" cy="100" r="72" fill="url(#lg)" opacity="0.12"/>
-              <path d="M82 66c-4 8 1 18 12 22 10 4 22 2 28-6" stroke="#2aa876" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M70 130c10-6 22-8 35-6 18 3 30-2 38-12" stroke="#2b89d9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-            <div style="margin-top:8px; font-weight:700; color:var(--muted)">GreenNext — 학교 탄소 감축 챌린지</div>
-            <div style="font-size:13px; color:var(--muted); margin-top:6px">탄소 다이어리로 매일 기록하고, 실천으로 점수 얻기</div>
-          </div>
-        </div>
-      </div>
+<section id="activity">
+    <h2>핵심 활동</h2>
+    <div class="card">
+        <h3>📘 탄소 다이어리 챌린지</h3>
+        <p>일상 속 탄소 배출을 기록하고 줄이는 습관을 만들어요.</p>
+        <ul>
+            <li>플라스틱 사용 줄이기</li>
+            <li>대중교통 이용</li>
+            <li>에코 포인트 적립</li>
+        </ul>
+        <a href="#" class="btn">참여 방법 보기</a>
     </div>
-  </section>
+</section>
 
-  <!-- ACTIVITY -->
-  <section id="activity" role="region" aria-labelledby="activity-h">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3 id="activity-h">핵심활동 — 탄소 다이어리 작성</h3>
-          <p class="section-sub">일상 속 탄소 배출을 기록하고, 쉬운 실천으로 감축을 경험합니다.</p>
-        </div>
-        <div class="small muted">
-          <span class="pill">프로그램 형식</span>
-        </div>
-      </div>
-
-      <div class="card fade-in" tabindex="0">
-        <div style="display:flex; gap:18px; flex-wrap:wrap;">
-          <div style="flex:1; min-width:260px;">
-            <p><strong>무엇을 하나요?</strong></p>
-            <ul>
-              <li>학생이 하루의 활동(통학수단·식사·재활용·전기 사용 등)을 기록</li>
-              <li>간단한 체크리스트로 탄소 감축잠재력을 추정하고 에코포인트를 지급</li>
-              <li>학교 단위 랭킹으로 축적된 감축량을 비교·공유</li>
-            </ul>
-
-            <p><strong>예시 실천</strong></p>
-            <div class="small-muted">
-              대중교통 이용 → 20점, 식판 사용(잔반 줄이기) → 15점, 재사용 용기 사용 → 10점 등
-            </div>
-
-            <p style="margin-top:12px"><strong>기대 효과</strong></p>
-            <ol>
-              <li>자율적 행동 변화 유도</li>
-              <li>데이터 기반의 학교 감축 성과 산출</li>
-              <li>학생 리더십과 공동체성 강화</li>
-            </ol>
-          </div>
-
-          <div style="width:360px;">
-            <div class="card" style="margin-bottom:12px;">
-              <strong>탄소 다이어리 미리보기</strong>
-              <div class="small" style="margin-top:8px">간단한 체크만으로 에코포인트를 받는 시뮬레이션</div>
-            </div>
-
-            <div class="card small" style="margin-bottom:8px">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
-                <div style="font-weight:700">이번 달 학교 랭킹</div>
-                <div class="small-muted">업데이트: 실시간</div>
-              </div>
-              <ol style="margin:6px 0 0 18px; color:var(--muted)">
-                <li>서울고 — 12,450 pts</li>
-                <li>푸른학교 — 9,230 pts</li>
-                <li>하람고 — 7,820 pts</li>
-              </ol>
-            </div>
-
-            <div class="card small">
-              <div style="display:flex; justify-content:space-between; gap:10px; align-items:center">
-                <div>
-                  <div style="font-weight:700">에코포인트</div>
-                  <div class="small-muted">포인트로 리워드 교환 가능</div>
-                </div>
-                <div class="points-badge" id="sample-points">+0 pts</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+<section id="campaign">
+    <h2>캠페인 참여</h2>
+    <div class="card">
+        <p>함께 행동할 준비 되었나요?</p>
+        <p>도전하고 기록하면 지구는 더 건강해집니다!</p>
+        <a href="#" class="btn">캠페인 신청하기</a>
     </div>
-  </section>
+</section>
 
-  <!-- JOIN / CAMPAIGN PARTICIPATION -->
-  <section id="join" role="region" aria-labelledby="join-h">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3 id="join-h">캠페인 참여 — 탄소 다이어리 작성하기</h3>
-          <p class="section-sub">아래 폼에서 간단히 기록하고 즉시 에코포인트를 확인하세요.</p>
-        </div>
-        <div class="small muted">누적 데이터는 브라우저에 저장됩니다 (데모)</div>
-      </div>
+<section id="news">
+    <h2>뉴스 & 스토리</h2>
+    <div class="card">
+        <p>곧 업데이트될 예정입니다 👀</p>
+        <p>환경을 지키는 다양한 이야기들 곧 만나보세요!</p>
+    </div>
+</section>
 
-      <div class="card fade-in" style="padding:18px;">
-        <div class="diary-grid">
-          <div>
-            <form id="diaryForm" class="card" aria-label="탄소 다이어리 작성 폼" onsubmit="return false;">
-              <div style="display:flex; gap:10px; margin-bottom:10px">
-                <input id="name" type="text" placeholder="이름 (예: 김소윤)" required aria-label="이름"/>
-                <input id="school" type="text" placeholder="학교명 (예: 서울고)" required aria-label="학교명"/>
-              </div>
+<section id="contact">
+    <h2>후원 & 문의</h2>
+    <div class="card">
+        <p>💌 문의: green@next.org</p>
+        <p>🌱 후원 계좌: (가상) 123-4567-7890</p>
+        <a href="#" class="btn">문의하기</a>
+    </div>
+</section>
 
-              <div style="display:flex; gap:10px; margin-bottom:10px">
-                <input id="email" type="email" placeholder="이메일 (선택)" aria-label="이메일"/>
-                <select id="transport" aria-label="통학수단">
-                  <option value="walk">도보/자전거</option>
-                  <option value="bus" selected>버스/지하철</option>
-                  <option value="car">자가용</option>
-                </select>
-              </div>
+<footer>
+    © 2025 GreenNext. All Rights Reserved.
+</footer>
 
-              <label class="small-muted">오늘의 실천(여러개 선택 가능)</label>
-              <div style="display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 12px">
-                <button type="button" data-action="toggle" data-value="reusable" class="btn btn-ghost small">재사용 용기 사용</button>
-                <button type="button" data-action="toggle" data-value="no_waste" class="btn btn-ghost small">남김 없이 식사</button>
-                <button type="button" data-action="toggle" data-value="public_trans" class="btn btn-ghost small">대중교통 이용</button>
-                <button type="button" data-action="toggle" data-value="led" class="btn btn-ghost small">에너지 절약 (LED/절전)</button>
-              </div>
+<script>
+    // 스크롤 시 색 강조 & 부드러운 효과 추가 가능(추가 여지)
+</script>
 
-              <div style="margin-bottom:10px">
-                <label class="small-muted">한줄 기록 (선택)</label>
-                <textarea id="note" rows="3" placeholder="오늘 어떤 실천을 했나요?" aria-label="한줄 기록"></textarea>
-              </div>
-
-              <div style="display:flex; gap:10px; align-items:center;">
-                <button class="btn btn-primary" id="submitEntry">기록하고 포인트 받기</button>
-                <div class="small-muted" style="margin-left:auto">에코포인트: <span id="currentPoints">0</span> pts</div>
-              </div>
-              <div id="formFeedback" class="small" style="margin-top:10px; color:green; display:none"></div>
-            </form>
-          </div>
-
-          <aside style="width:100%; max
+</body>
+</html>
